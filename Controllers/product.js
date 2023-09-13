@@ -22,6 +22,20 @@ exports.createProduct = async (req, res, next) => {
   }
 };
 
+exports.productDetails = async (req, res) => {
+  const product = await productModel.findById(req.params.id);
+  if (!product) {
+    return res.status(500).json({
+      message: "Doctor is not Found !!"
+    });
+  }
+  res.status(200).json({
+    success: true,
+    product,
+
+  });
+};
+
 exports.myProduct = async (req, res, next) => {
   const product = await productModel.find({ user: req.user._id }).sort({createdAt:-1});
   res.status(200).json({
