@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongodb');
 const productModel = require('../models/Products');
 const ErrorHandler = require("../utilies/ErrorHandler");
 
@@ -19,4 +20,13 @@ exports.createProduct = async (req, res, next) => {
   } catch (error) {
     return next(new ErrorHandler(error.message, 400));
   }
+};
+
+exports.myProduct = async (req, res, next) => {
+  const product = await productModel.find({ user: req.user._id }).sort({createdAt:-1});
+  res.status(200).json({
+    success: true,
+    product,
+
+  });
 };
