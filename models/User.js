@@ -62,13 +62,7 @@ userSchema.pre("save", async function (next) {
 	}
 	this.password = await bcrypt.hash(this.password, 10);
 });
-// userSchema.pre("save", async function (next) {
-// 	if (!this.isModified("confirmpassword")) {
-// 		next();
-// 	}
-// 	this.confirmpassword = await bcrypt.hash(this.confirmpassword, 10);
-// });
-// // JWT TOKEN
+
 userSchema.methods.getJWTToken = function () {
 	return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
 		expiresIn: process.env.JWT_EXPIRE,
@@ -77,7 +71,7 @@ userSchema.methods.getJWTToken = function () {
 userSchema.methods.comparePassword = async function (password) {
 	return await bcrypt.compare(password, this.password);
 };
-// // Generating Password Reset Token
+
 userSchema.methods.getResetPasswordToken = function () {
 	const resetToken = crypto.randomBytes(20).toString("hex");
 	this.resetPasswordToken = crypto
