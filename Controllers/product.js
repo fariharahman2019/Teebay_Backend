@@ -30,3 +30,8 @@ exports.myProduct = async (req, res, next) => {
 
   });
 };
+
+exports.getAllProducts = async (req, res) => {
+  const products = await productModel.find();
+  res.status(200).json({ success: true, products });
+};
