@@ -49,3 +49,12 @@ exports.getAllProducts = async (req, res) => {
   const products = await productModel.find();
   res.status(200).json({ success: true, products });
 };
+
+exports.updateProduct = async (req, res) => {
+  const product = await productModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+  res.status(200).json({ success: true, product });
+};
