@@ -1,6 +1,6 @@
 const userModel = require('../models/User');
-const sendToken = require('../utilies/jwtToken');
-const ErrorHandler = require("../utilies/ErrorHandler");
+const sendToken = require('../utilities/jwtToken');
+const ErrorHandler = require("../utilities/ErrorHandler");
 
 exports.createUser = async (req, res, next) => {
     try {

@@ -1,6 +1,6 @@
 const { ObjectId } = require('mongodb');
 const productModel = require('../models/Products');
-const ErrorHandler = require("../utilies/ErrorHandler");
+const ErrorHandler = require("../utilities/ErrorHandler");
 
 exports.createProduct = async (req, res, next) => {
   try {
